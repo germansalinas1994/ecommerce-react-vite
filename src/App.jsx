@@ -6,7 +6,7 @@ import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import 'animate.css'
 import Home from './pages/Home'
-import AppRouter from './router/appRouter';
+import AppRouter from './router/AppRouter';
 
 
 // import './css/App.css'
