@@ -12,17 +12,7 @@ import AppRouter from './router/AppRouter';
 // import './css/App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
-  const apiLocalKey = import.meta.env.VITE_APP_API_KEY
 
-  const llamarServidor = async () => {
-    try {
-      const res = await axios.get(apiLocalKey + '/categorias')
-      console.log(res.data.result)
-    } catch (error) {
-      console.log(error)
-    }
-  }
 
 
   return (
