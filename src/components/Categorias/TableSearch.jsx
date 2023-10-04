@@ -3,17 +3,22 @@ import Box from '@mui/material/Box';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-
-
+import AddIcon from '@mui/icons-material/Add';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/DeleteOutlined';
+import SaveIcon from '@mui/icons-material/Save';
+import CancelIcon from '@mui/icons-material/Close';
+import {
+    GridRowModes,
+    GridToolbarContainer,
+    GridActionsCellItem,
+    GridRowEditStopReasons,
+  } from '@mui/x-data-grid';
+import { Grid } from '@mui/material';
 
 export default function TableSearch() {
 
-    // const myData = [
-    //     { idCategoria: 1, descripcion: 'Hello', cantidadProductos: 'World' },
-    //     { idCategoria: 2, descripcion: 'XGrid', cantidadProductos: 'is Awesome' },
-    //     { idCategoria: 3, descripcion: 'Material-UI', cantidadProductos: 'is Amazing' },
-    //   ];
-
+ 
 
     const [categorias, setCategorias] = useState([]);
     const apiLocalKey = import.meta.env.VITE_APP_API_KEY
@@ -36,31 +41,74 @@ export default function TableSearch() {
     }
 
     const myColumns = [
-        { field: 'idCategoria', headerName: 'idCategoria', width: 100 },
-        { field: 'descripcion', headerName: 'descripcion', width: 200 },
-        { field: 'cantidadProductos', headerName: 'cantidadProductos', width: 150 },
+        //el field debe ser el mismo nombre de la propiedad del objeto, cada campo es una columna
+        // { field: 'idCategoria', headerName: 'Id', width: 500 },
+        { field: 'descripcion', headerName: 'Descripción', width: 700 },
+        { field: 'cantidadProductos', headerName: 'Cantidad Productos', width: 700 },
+        {
+            field: 'actions',
+            type: 'actions',
+            headerName: 'Acciones',
+            width: 200,
+            cellClassName: 'actions',
+            getActions: ({ id }) => {
+              return [
+                <GridActionsCellItem
+                  icon={<EditIcon />}
+                  label="Edit"
+                  className="textPrimary"
+                //   onClick={}
+                  color="inherit"
+                />,
+                <GridActionsCellItem
+                  icon={<DeleteIcon />}
+                  label="Delete"
+                //   onClick={}
+                  color="inherit"
+                />,
+              ];
+            },
+          },
 
         // Define más columnas según sea necesario
     ];
+
+
     return (
-        <Box sx={{ height: 400, width: 1 }}>
+        <Box sx={{ height: 600, width: 1, display:'grid' }}>
             <DataGrid
                 initialState={{
                     pagination: { paginationModel: { pageSize: 5 } },
                   }}
-                pageSizeOptions={[5, 10, 25]}
+                pageSizeOptions={[10, 20, 30]}
                 rows={categorias}  // Usa tus propios datos aquí
                 columns={myColumns}  // Usa tus propias columnas aquí
                 getRowId={(row) => row.idCategoria}
                 disableColumnFilter
                 disableColumnSelector
                 disableDensitySelector
-                components={{ Toolbar: GridToolbar }}
+                components={{ Toolbar: GridToolbar}}
+                
+                
                 componentsProps={{
                     toolbar: {
                         showQuickFilter: true,
+
                     },
-                }}
+                }
+                
+                
+                
+            }
+            localeText={{
+                // Personaliza el mensaje de selección aquí
+                noRowsLabel: 'No hay filas',
+                footerPaginationRowsPerPage: 'Filas por página:',
+                footerPaginationPage: 'Página:',
+                footerTotalRows: 'Total de filas:',
+                // Cambia el mensaje de selección aquí
+                selectionFooter: (count) => `${count} filas seleccionadas`,
+            }}
             />
         </Box>
     );
