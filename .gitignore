@@ -1,24 +1,35 @@
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
+# Node.js / npm
+node_modules/
+npm-debug.log
+yarn-error.log
 
-node_modules
-dist
-dist-ssr
-*.local
+# Archivos de construcción
+build/
+dist/
+*.bundle.js
+*.js.map
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+# Archivos de configuración de desarrollo local
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Archivos de caché
+.cache/
+
+# Dependencias generadas por Babel
+/.babelrc
+/.babelrc.js
+/.babelrc.json
+
+# Dependencias generadas por eslint
+/.eslintrc
+/.eslintrc.js
+/.eslintrc.json
+
+# Dependencias generadas por Jest
+/jest.config.js
+
+# Dependencias generadas por webpack
+/webpack.config.js
