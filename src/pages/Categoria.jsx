@@ -1,10 +1,10 @@
-import BasicTable from "../components/Categorias/BasicTable";
+import TableSearch from "../components/Categorias/TableSearch";
 
 
 const Categoria = () => {
     return (
 
-        <BasicTable />
+        <TableSearch />
 
     )
 }

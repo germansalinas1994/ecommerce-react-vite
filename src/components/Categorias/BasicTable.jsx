@@ -16,12 +16,12 @@ export default function BasicTable() {
   const apiLocalKey = import.meta.env.VITE_APP_API_KEY
 
   useEffect(() => {
-    llamarServidor()
+    GetCategorias()
   }
     , [])
 
 
-  const llamarServidor = async () => {
+  const GetCategorias = async () => {
     debugger;
     try {
       const res = await axios.get(apiLocalKey + '/categorias')
