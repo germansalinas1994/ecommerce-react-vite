@@ -61,7 +61,8 @@ export default function TableSearch() {
                   color="inherit"
                 />,
                 <GridActionsCellItem
-                  icon={<DeleteIcon />}
+                // icon={<DeleteIcon sx={{color:'red'}} />}
+                icon={<DeleteIcon />}
                   label="Delete"
                 //   onClick={}
                   color="inherit"
