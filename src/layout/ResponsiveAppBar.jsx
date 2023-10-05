@@ -13,12 +13,32 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { Link } from 'react-router-dom';
+import PinterestIcon from '@mui/icons-material/Pinterest';
 
 
-const pages = ['Productos', 'Categorias', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+
+// Declaro un array de objetos con las propiedades id, name y route. 
+// Luego, en el componente ResponsiveAppBar, itero sobre ese array y muestro los elementos en el menú de navegación.
+//  El componente ResponsiveAppBar es el siguiente:
+const pagesNav = [
+  { id: 1, name: 'Productos', route: '/productos' },
+  { id: 2, name: 'Categorias', route: '/categorias' },
+  { id: 3, name: 'Blog', route: '/blog' }
+]
+
+const settings = [
+  { id: 1, name: 'Perfil', route: '/perfil' },
+  { id: 2, name: 'Cuenta', route: '/cuenta' },
+  { id: 3, name: 'Dashboard', route: '/dashboard' },
+  { id: 4, name: 'Logout', route: '/logout' }
+]
+
+
+
+// const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -29,10 +49,12 @@ function ResponsiveAppBar() {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
-    //Cuando toco el boton, quiero que me redirrecione a la page que corresponde
 
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
   };
+
+
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
@@ -41,25 +63,38 @@ function ResponsiveAppBar() {
   return (
     <Container maxWidth="xl">
       <Toolbar disableGutters>
-        <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-        <Typography
-          variant="h6"
-          noWrap
-          component="a"
-          href="#app-bar-with-responsive-menu"
-          sx={{
-            mr: 2,
-            display: { xs: 'none', md: 'flex' },
-            fontFamily: 'monospace',
-            fontWeight: 700,
-            letterSpacing: '.3rem',
-            color: 'inherit',
-            textDecoration: 'none',
-          }}
-        >
-          LOGO
-        </Typography>
 
+
+
+        {/* Aca esta el logo */}
+        <Link to={'/'} style={{ color: 'inherit', textDecoration: 'none' }}>
+          <PinterestIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+        </Link>
+
+        {/* esto es el texto del logo */}
+        {/* el boton me tiene que llevar a la pagina de inicio */}
+        <Link to={'/'} style={{ color: 'inherit', textDecoration: 'none' }}>
+
+          <Typography
+            variant="h6"
+            noWrap
+            component="a"
+            sx={{
+              mr: 2,
+              display: { xs: 'none', md: 'flex' },
+              fontFamily: 'monospace',
+              fontWeight: 700,
+              letterSpacing: '.3rem',
+              color: 'inherit',
+              textDecoration: 'none',
+            }}
+          >
+            ECommerce
+          </Typography>
+        </Link>
+
+
+        {/* este box es para el menu de navegacion si esta la pantalla contraida */}
         <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
           <IconButton
             size="large"
@@ -69,8 +104,12 @@ function ResponsiveAppBar() {
             onClick={handleOpenNavMenu}
             color="inherit"
           >
+            <Typography sx={{ flexGrow: 1, display: { xs: 'flex' }, mr: 1 }}>
+              Menu
+            </Typography>
             <MenuIcon />
           </IconButton>
+
           <Menu
             id="menu-appbar"
             anchorEl={anchorElNav}
@@ -89,48 +128,44 @@ function ResponsiveAppBar() {
               display: { xs: 'block', md: 'none' },
             }}
           >
-            {pages.map((page) => (
-              <MenuItem key={page} onClick={handleCloseNavMenu}>
-                <Typography textAlign="center">{page}</Typography>
-              </MenuItem>
+            {pagesNav.map((page) => (
+              <Link to={page.route.toLowerCase()} style={{ color: 'inherit', textDecoration: 'none' }}>
+
+                <MenuItem key={page.id} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">{page.name}</Typography>
+                </MenuItem>
+              </Link>
+
             ))}
           </Menu>
         </Box>
-        <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-        <Typography
-          variant="h5"
-          noWrap
-          component="a"
-          href="#app-bar-with-responsive-menu"
-          sx={{
-            mr: 2,
-            display: { xs: 'flex', md: 'none' },
-            flexGrow: 1,
-            fontFamily: 'monospace',
-            fontWeight: 700,
-            letterSpacing: '.3rem',
-            color: 'inherit',
-            textDecoration: 'none',
-          }}
-        >
-          LOGO
-        </Typography>
+
+        {/* este box es para el menu de navegacion si esta la pantalla expandida */}
         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-          {pages.map((page) => (
-            <Button
-              key={page}
-              sx={{ my: 2, color: 'white', display: 'block' }}
-            >
-              <Link to={`/${page.toLowerCase()}`} style={{ color: 'inherit', textDecoration: 'none' }}>
-                {page}
-              </Link>
-            </Button>))}
+          {pagesNav.map((page) => (
+            <Link to={page.route.toLowerCase()} style={{ color: 'inherit', textDecoration: 'none' }}>
+
+              <Button
+                key={page.id}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+                {page.name}
+
+              </Button>
+            </Link>))}
         </Box>
+
+
+
+
+        {/* Este box es para el boton de login o para info del usuario */}
+
 
         <Box sx={{ flexGrow: 0 }}>
           <Tooltip title="Open settings">
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-              <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+              {/* en el src del avatar va la imagen del usuario, por ahora es una imagen de prueba, despues va a ser la imagen del usuario logueado */}
+              <Avatar alt="Remy Sharp" src="https://mui.com/static/images/avatar/2.jpg" />
             </IconButton>
           </Tooltip>
           <Menu
@@ -150,14 +185,19 @@ function ResponsiveAppBar() {
             onClose={handleCloseUserMenu}
           >
             {settings.map((setting) => (
-              <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                <Typography textAlign="center">{setting}</Typography>
-              </MenuItem>
+              <Link to={setting.route.toLowerCase()} style={{ color: 'inherit', textDecoration: 'none' }}>
+
+                <MenuItem key={setting.id} onClick={handleCloseUserMenu}>
+
+                  <Typography textAlign="center">{setting.name}</Typography>
+                </MenuItem>
+              </Link>
+
             ))}
           </Menu>
         </Box>
       </Toolbar>
-    </Container>
+    </Container >
   );
 }
 export default ResponsiveAppBar;

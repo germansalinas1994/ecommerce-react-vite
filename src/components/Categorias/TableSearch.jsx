@@ -6,15 +6,11 @@ import { useEffect, useState } from 'react';
 import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/DeleteOutlined';
-import SaveIcon from '@mui/icons-material/Save';
-import CancelIcon from '@mui/icons-material/Close';
+
 import {
-    GridRowModes,
-    GridToolbarContainer,
-    GridActionsCellItem,
-    GridRowEditStopReasons,
+
+    GridActionsCellItem
   } from '@mui/x-data-grid';
-import { Grid } from '@mui/material';
 
 export default function TableSearch() {
 
