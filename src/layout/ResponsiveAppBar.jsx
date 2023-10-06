@@ -95,7 +95,17 @@ function ResponsiveAppBar() {
 
 
         {/* este box es para el menu de navegacion si esta la pantalla contraida */}
+
         <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          <IconButton
+            size="large"
+            color="inherit"
+          >
+            <Link to={'/home'} style={{ color: 'inherit', textDecoration: 'none' }}>
+
+              <PinterestIcon sx={{ flexGrow: 1, display: { xs: 'flex' }, mr: 1 }} />
+            </Link>
+          </IconButton>
           <IconButton
             size="large"
             aria-label="account of current user"
@@ -104,12 +114,14 @@ function ResponsiveAppBar() {
             onClick={handleOpenNavMenu}
             color="inherit"
           >
+
+
+
             <Typography sx={{ flexGrow: 1, display: { xs: 'flex' }, mr: 1 }}>
               Menu
             </Typography>
             <MenuIcon />
           </IconButton>
-
           <Menu
             id="menu-appbar"
             anchorEl={anchorElNav}
@@ -138,6 +150,7 @@ function ResponsiveAppBar() {
 
             ))}
           </Menu>
+
         </Box>
 
         {/* este box es para el menu de navegacion si esta la pantalla expandida */}
