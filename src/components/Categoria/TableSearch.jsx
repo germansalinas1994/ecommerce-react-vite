@@ -6,22 +6,24 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/DeleteOutlined';
 import { GridActionsCellItem } from '@mui/x-data-grid';
 
-const TableSearch = ({ categorias }) => {
+const TableSearch = ({ categorias,onEdit,onDelete}) => {
   const myColumns = [
     { field: 'nombre', headerName: 'Nombre Categoría', width: 500 },
     { field: 'descripcion', headerName: 'Descripción', width: 500 },
-    { field: 'cantidadProductos', headerName: 'Cantidad Productos', width: 500 },
+    { field: 'cantidadProductos', headerName: 'Cantidad Productos', width: 300 },
     {
       field: 'actions',
       type: 'actions',
       headerName: 'Acciones',
       width: 200,
       cellClassName: 'actions',
+      //aca va id porque es el nombre de la columna de la tabla
       getActions: ({ id }) => {
         return [
           <GridActionsCellItem
             icon={<EditIcon />}
             label="Edit"
+            onClick={() => onEdit(id)}  // Llamar a la función pasando el ID
             className="textPrimary"
             color="inherit"
           />,
@@ -29,6 +31,8 @@ const TableSearch = ({ categorias }) => {
             icon={<DeleteIcon />}
             label="Delete"
             color="inherit"
+            onClick={() => onDelete(id)}  // Llamar a la función pasando el ID
+
           />,
         ];
       },
@@ -37,9 +41,8 @@ const TableSearch = ({ categorias }) => {
 
   if (categorias.length > 0) {
     return (
-      <Box sx={{ height: 1, width: 1, overflow: 'auto' }}>
         <DataGrid
-          sx={{ width: '100%', height: '100%' }}
+          sx={{ width: 1 }}
           initialState={{
             pagination: { paginationModel: { pageSize: 10 } },
           }}
@@ -64,9 +67,8 @@ const TableSearch = ({ categorias }) => {
             selectionFooter: (count) => `${count} filas seleccionadas`,
           }}
         />
-      </Box>
     );
-  } 
+  }
 }
 
 export default TableSearch;

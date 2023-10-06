@@ -7,6 +7,8 @@ import BotonAgregar from "../../components/Botones/Agregar";
 import axios from "axios";
 import Swal from 'sweetalert2'
 import LoadingModal from "../../components/LoadingModal";
+import ModalFormCategoria from "../../components/Categoria/ModalFormCategoria";
+
 
 import { useState, useEffect } from "react";
 
@@ -21,6 +23,10 @@ const ListadoCategoria = () => {
     const [categorias, setCategorias] = useState([]);
     const [reload, setReload] = useState(false);
     const { showLoadingModal, hideLoadingModal } = LoadingModal();
+
+    //Esta estado lo uso para saber si estoy editando o no, si no estoy editan voy a crear
+    const [isEditing, setIsEditing] = useState(false);
+
 
     useEffect(() => {
         // Lógica para obtener las categorías
@@ -56,11 +62,12 @@ const ListadoCategoria = () => {
     }
 
     //funcion que toma el evento de cerrar el modal
-    const handleCloseModal = () => {
-        setFormData({ nombre: '', descripcion: '' });
-        setErrorDescripcion(false);
-        setErrorNombre(false);
-        setOpenModal(false);
+    const handleCloseModal = async () => {
+        await setFormData({ nombre: '', descripcion: '' });
+        await setErrorDescripcion(false);
+        await setErrorNombre(false);
+        await setOpenModal(false);
+        await setIsEditing(false);
     }
 
     //funcion que toma el evento de cambio de valor en los campos del modal
@@ -79,6 +86,90 @@ const ListadoCategoria = () => {
             setErrorDescripcion(!value.trim());
         }
     }
+
+
+
+    //funcion que toma el evento de editar una categoria
+    const handleEditCategoria = async (id) => {
+        try {
+            showLoadingModal();
+            //Voy a buscar la categoria por id
+            debugger;
+
+            const response = await axios.get(apiLocalKey + '/categoria/' + id);
+            //Seteo el estado con los datos de la categoria
+            setFormData(response.data.result.data); // Asume que la respuesta contiene los datos de la categoría
+            setOpenModal(true);
+            setIsEditing(true);
+            hideLoadingModal();
+        } catch (error) {
+            hideLoadingModal();
+            Swal.fire({
+                position: 'center',
+                icon: 'error',
+                allowOutsideClick: false,
+                title: 'Hubo un error al recuperar los detalles de la categoría',
+                showConfirmButton: true,
+            });
+        }
+    };
+
+
+    const handleDeleteCategoria = async (id) => {
+        try {
+            //pregunto si esta seguro de eliminar la categoria
+            Swal.fire({
+                title: '¿Estás seguro de eliminar la categoría?',
+                text: "No podrás revertir esto!",
+                icon: 'warning',
+                showConfirmButton: true,
+
+                showCancelButton: true,
+                allowOutsideClick: false,
+
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Si, eliminar!',
+                cancelButtonText: 'Cancelar'
+            }).then(async (result) => {
+                if (result.isConfirmed) {
+                    showLoadingModal();
+                    //si esta seguro, elimino la categoria
+                    const response = await axios.delete(apiLocalKey + '/categoria/' + id);
+                    //muestro el msj de exito
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        allowOutsideClick: false,
+                        title: 'Categoría eliminada correctamente',
+                        showConfirmButton: true,
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            //aca deberia recargar el componente para que se vea la nueva categoria
+                            //Revierte el valor de reload para que se vuelva a ejecutar el useEffect
+                            //Cada vez que se cambia el valor de reload, se ejecuta el useEffect
+                            setReload(prev => !prev);
+                            hideLoadingModal();
+
+                        }
+                    })
+                }
+            })
+        } catch (error) {
+            hideLoadingModal();
+            Swal.fire({
+                position: 'center',
+                icon: 'error',
+                allowOutsideClick: false,
+                title: 'Hubo un error al eliminar la categoría',
+                showConfirmButton: true,
+            });
+        }
+    };
+
+
+
+
 
     const validaFormulario = () => {
         let valida = true;
@@ -103,29 +194,60 @@ const ListadoCategoria = () => {
             // Función para cargar categoría
 
             try {
-
+                debugger;
                 handleCloseModal();
                 showLoadingModal();  // <-- Mostrar el modal antes de comenzar la operación asincrónica
 
-                const resp = await axios.post(apiLocalKey + '/categorias', formData);
+                let resp = '';
+                if (isEditing) {
+                    // Si está editando, entonces envía un PUT
+                    resp = await axios.put(apiLocalKey + '/categoria/' + formData.idCategoria, formData);
+                    //muestro el msj de exito
+
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        allowOutsideClick: false,
+                        title: 'Categoría editada correctamente',
+                        showConfirmButton: true,
+
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            //aca deberia recargar el componente para que se vea la nueva categoria
+                            //Revierte el valor de reload para que se vuelva a ejecutar el useEffect
+                            //Cada vez que se cambia el valor de reload, se ejecuta el useEffect
+                            hideLoadingModal();  // <-- Ocultar el modal cuando la operación ha concluido
+                            setReload(prev => !prev);
+
+                        }
+                    })
+                }
+                else {
+                    resp = await axios.post(apiLocalKey + '/categorias', formData);
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        allowOutsideClick: false,
+                        title: 'Categoría creada correctamente',
+                        showConfirmButton: true,
+
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            //aca deberia recargar el componente para que se vea la nueva categoria
+                            //Revierte el valor de reload para que se vuelva a ejecutar el useEffect
+                            //Cada vez que se cambia el valor de reload, se ejecuta el useEffect
+                            hideLoadingModal();  // <-- Ocultar el modal cuando la operación ha concluido
+                            setReload(prev => !prev);
+
+                        }
+                    })
+
+                }
+
+                debugger;
+
                 console.log(resp.data);  // Puedes ver la respuesta del servidor
-                Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    allowOutsideClick: false,
-                    title: 'Categoría creada correctamente',
-                    showConfirmButton: true,
 
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        //aca deberia recargar el componente para que se vea la nueva categoria
-                        //Revierte el valor de reload para que se vuelva a ejecutar el useEffect
-                        //Cada vez que se cambia el valor de reload, se ejecuta el useEffect
-                        hideLoadingModal();  // <-- Ocultar el modal cuando la operación ha concluido
-                        setReload(prev => !prev);
-
-                    }
-                })
 
 
                 // Aquí puedes manejar la respuesta, por ejemplo, cerrar el modal, mostrar un mensaje de éxito, etc.
@@ -145,19 +267,15 @@ const ListadoCategoria = () => {
                 // Aquí puedes manejar el error, por ejemplo, mostrar un mensaje al usuario.
             }
         }
-
-
-
-
-
-
-
-
     }
 
     return (
         <>
-            <Box>
+            <Box 
+                sx={{
+                    width:{xs:0.3,md:0.9}
+                }}
+            >
                 <Typography
                     variant="h4"
                     sx={{
@@ -168,77 +286,24 @@ const ListadoCategoria = () => {
                     Listado de Categorias
                 </Typography>
                 <BotonAgregar onClick={handleOpenModal}></BotonAgregar>
-                <Modal
+
+                {/* Hago un componente para el modal, para que sea mas facil de leer */}
+                <ModalFormCategoria
                     open={openModal}
-                    aria-labelledby="modal-title"
-                    aria-describedby="modal-description"
-                    onClose={handleCloseModal}
-                >
-                    <Box
-                        sx={{
-                            position: 'absolute',
-                            top: '50%',
-                            left: '50%',
-                            transform: 'translate(-50%, -50%)',
-                            width: { xs: '90%', sm: '75%', md: '600px' }, // Cambia esta línea
-                            bgcolor: 'background.paper',
-                            borderRadius: '10px',
-                            boxShadow: 24,
-                            p: { xs: 2, sm: 3, md: 4 }, // Cambia el padding también
-                        }}
-                    >
-                        <Typography id="modal-title" variant="h6" component="h2">
-                            Cargar Categoría
-                        </Typography>
-                        <Box mt={2} component="form">
-                            <Box>
-                                <TextField
-                                    sx={{
-                                        mb: 2, width: { xs: '90%', sm: '75%', md: '500px' }, // Cambia esta línea
-                                    }}
-
-                                    label="Nombre"
-                                    name="nombre"
-                                    value={formData.nombre}
-                                    onChange={handleChange}
-                                    error={errorNombre}
-                                    helperText={errorNombre && "El nombre es obligatorio."}
-                                />
-                                <TextField
-
-                                    sx={{
-                                        mb: 2, width: { xs: '90%', sm: '75%', md: '500px' }, // Cambia esta línea
-                                    }}
-
-                                    label="Descripción"
-                                    name="descripcion"
-                                    value={formData.descripcion}
-                                    onChange={handleChange}
-                                    error={errorDescripcion}
-                                    helperText={errorDescripcion && "La descripción es obligatoria."}
-                                    margin="normal"
-                                />
-                            </Box>
-                            <Box sx={{ textAlign: 'center' }}>
-
-                                <Button sx={{ mt: 1, mr: 2, width: '120px' }} size="large" variant="contained" color="secondary" onClick={handleCloseModal}>
-                                    Cancelar
-                                </Button>
-                                <Button size="large" sx={{ mt: 1, width: '120px' }} variant="contained" color="primary" onClick={handleSubmit}>
-                                    Cargar
-                                </Button>
-
-                            </Box>
+                    handleClose={handleCloseModal}
+                    formData={formData}
+                    handleChange={handleChange}
+                    handleSubmit={handleSubmit}
+                    errorNombre={errorNombre}
+                    errorDescripcion={errorDescripcion}
+                />
 
 
-                        </Box>
-                    </Box>
-                </Modal>
+            <TableSearch categorias={categorias} onEdit={handleEditCategoria} onDelete={handleDeleteCategoria} />
             </Box>
-            
 
-            <TableSearch categorias={categorias} />
-        </>
+            </>
+
     );
 }
 
