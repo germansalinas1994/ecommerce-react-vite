@@ -1,8 +1,8 @@
 import TableSearch from "../../components/Categoria/TableSearch";
 import {
-    Typography, Button, TextField, Box, Modal
+    Typography, Box
 } from "@mui/material";
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import BotonAgregar from "../../components/Botones/Agregar";
 import axios from "axios";
 import Swal from 'sweetalert2'
@@ -40,15 +40,7 @@ const ListadoCategoria = () => {
 
             } catch (error) {
                 hideLoadingModal();  // <-- Ocultar el modal cuando la operación ha concluido
-
-                Swal.fire({
-                    position: 'center',
-                    icon: 'error',
-                    allowOutsideClick: false,
-                    title: 'Hubo un error al obtener las categorías',
-                    showConfirmButton: true,
-                })
-
+                console.log(error);
             }
         };
 
@@ -196,11 +188,12 @@ const ListadoCategoria = () => {
             try {
                 debugger;
                 handleCloseModal();
-                showLoadingModal();  // <-- Mostrar el modal antes de comenzar la operación asincrónica
+                // showLoadingModal();  // <-- Mostrar el modal antes de comenzar la operación asincrónica
 
                 let resp = '';
                 if (isEditing) {
                     // Si está editando, entonces envía un PUT
+                    showLoadingModal();
                     resp = await axios.put(apiLocalKey + '/categoria/' + formData.idCategoria, formData);
                     //muestro el msj de exito
 
@@ -223,6 +216,7 @@ const ListadoCategoria = () => {
                     })
                 }
                 else {
+                    showLoadingModal();
                     resp = await axios.post(apiLocalKey + '/categorias', formData);
                     Swal.fire({
                         position: 'center',
@@ -273,17 +267,19 @@ const ListadoCategoria = () => {
         <>
             <Box 
                 sx={{
-                    width:{xs:0.3,md:0.9}
+                    maxWidth:1,
+                    width:{xs:0.3,md:1},
+                    
                 }}
             >
                 <Typography
                     variant="h4"
                     sx={{
-                        fontWeight: 700,
+                        fontWeight: 500,
                         marginBottom: { xs: '10px', md: '0' },
                     }}
                 >
-                    Listado de Categorias
+                    Categorias
                 </Typography>
                 <BotonAgregar onClick={handleOpenModal}></BotonAgregar>
 

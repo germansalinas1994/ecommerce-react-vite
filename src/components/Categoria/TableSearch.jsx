@@ -10,7 +10,7 @@ const TableSearch = ({ categorias,onEdit,onDelete}) => {
   const myColumns = [
     { field: 'nombre', headerName: 'Nombre Categoría', width: 500 },
     { field: 'descripcion', headerName: 'Descripción', width: 500 },
-    { field: 'cantidadProductos', headerName: 'Cantidad Productos', width: 300 },
+    { field: 'cantidadProductos', headerName: 'Cantidad Productos', width: 200 },
     {
       field: 'actions',
       type: 'actions',
@@ -42,7 +42,11 @@ const TableSearch = ({ categorias,onEdit,onDelete}) => {
   if (categorias.length > 0) {
     return (
         <DataGrid
-          sx={{ width: 1 }}
+          sx={{
+            maxWidth:1,
+            maxHeight:1,
+             width: {xs:0.3,md:1} 
+            }}
           initialState={{
             pagination: { paginationModel: { pageSize: 10 } },
           }}
