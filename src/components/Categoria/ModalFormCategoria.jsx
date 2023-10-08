@@ -2,6 +2,7 @@
 
 import { Box, Typography, TextField, Button, Modal } from "@mui/material";
 import { useState } from "react";
+import theme from "../../layout/theme"
 
 const ModalFormCategoria = ({ open, handleClose, formData, handleChange, handleSubmit, errorNombre, errorDescripcion }) => {
     return (
@@ -51,10 +52,10 @@ const ModalFormCategoria = ({ open, handleClose, formData, handleChange, handleS
                         />
                     </Box>
                     <Box sx={{ textAlign: 'center' }}>
-                        <Button sx={{ mt: 1, mr: 2, width: '120px' }} size="large" variant="contained" color="secondary" onClick={handleClose}>
+                        <Button sx={{ mt: 1, mr: 2, width: '120px' }} size="large" variant="contained" color= "primary" onClick={handleClose}>
                             Cancelar
                         </Button>
-                        <Button size="large" sx={{ mt: 1, width: '120px' }} variant="contained" color="primary" onClick={handleSubmit}>
+                        <Button size="large" sx={{ mt: 1, width: '120px' }} variant="contained" color="success" onClick={handleSubmit}>
                             {formData && formData.idCategoria ? 'Actualizar' : 'Cargar'}
                         </Button>
                     </Box>

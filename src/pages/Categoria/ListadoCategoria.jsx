@@ -118,10 +118,11 @@ const ListadoCategoria = () => {
 
                 showCancelButton: true,
                 allowOutsideClick: false,
+                reverseButtons: true, //invierte la ubicacion de los botones confirmar y cancelar
 
-                confirmButtonColor: '#d33',
-                cancelButtonColor: '#3085d6',
-                confirmButtonText: 'Si, eliminar!',
+                confirmButtonColor: '#D32F2F',
+                cancelButtonColor: '#6E8EA7',
+                confirmButtonText: 'Confirmar',
                 cancelButtonText: 'Cancelar'
             }).then(async (result) => {
                 if (result.isConfirmed) {
