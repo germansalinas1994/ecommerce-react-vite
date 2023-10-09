@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
+import {Box,Grid} from '@mui/material';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
@@ -41,6 +41,7 @@ const TableSearch = ({ categorias,onEdit,onDelete}) => {
 
   if (categorias.length > 0) {
     return (
+
         <DataGrid
           sx={{
             maxWidth:1,

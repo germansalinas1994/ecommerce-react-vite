@@ -10,7 +10,7 @@ return(
 
 <Button onClick={onClick}
 variant="contained"
-color="success"
+color="primary"
 sx={{
     borderRadius: '10px',
     float: { xs: 'none', md: 'right' },  // Agrega float a la derecha en pantallas medianas y grandes, elimina en pantallas pequeñas

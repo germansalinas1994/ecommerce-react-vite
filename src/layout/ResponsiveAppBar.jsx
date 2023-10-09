@@ -17,6 +17,7 @@ import PinterestIcon from '@mui/icons-material/Pinterest';
 
 
 
+
 // Declaro un array de objetos con las propiedades id, name y route. 
 // Luego, en el componente ResponsiveAppBar, itero sobre ese array y muestro los elementos en el menú de navegación.
 //  El componente ResponsiveAppBar es el siguiente:
@@ -141,12 +142,15 @@ function ResponsiveAppBar() {
             }}
           >
             {pagesNav.map((page) => (
-              <Link to={page.route.toLowerCase()} style={{ color: 'inherit', textDecoration: 'none' }}>
-
-                <MenuItem key={page.id} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page.name}</Typography>
-                </MenuItem>
-              </Link>
+              <MenuItem
+                key={page.id}
+                onClick={handleCloseNavMenu}
+                component={Link}
+                to={page.route.toLowerCase()}
+                style={{ color: 'inherit', textDecoration: 'none' }}
+              >
+                <Typography textAlign="center">{page.name}</Typography>
+              </MenuItem>
 
             ))}
           </Menu>
@@ -156,14 +160,11 @@ function ResponsiveAppBar() {
         {/* este box es para el menu de navegacion si esta la pantalla expandida */}
         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
           {pagesNav.map((page) => (
-            <Link to={page.route.toLowerCase()} style={{ color: 'inherit', textDecoration: 'none' }}>
-
+            <Link key={page.id} to={page.route.toLowerCase()} style={{ color: 'inherit', textDecoration: 'none' }}>
               <Button
-                key={page.id}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 {page.name}
-
               </Button>
             </Link>))}
         </Box>
@@ -198,13 +199,16 @@ function ResponsiveAppBar() {
             onClose={handleCloseUserMenu}
           >
             {settings.map((setting) => (
-              <Link to={setting.route.toLowerCase()} style={{ color: 'inherit', textDecoration: 'none' }}>
+              <MenuItem
+                key={setting.id}
+                onClick={handleCloseUserMenu}
+                component={Link}
+                to={setting.route.toLowerCase()}
+                style={{ color: 'inherit', textDecoration: 'none' }}
+              >
+                <Typography textAlign="center">{setting.name}</Typography>
+              </MenuItem>
 
-                <MenuItem key={setting.id} onClick={handleCloseUserMenu}>
-
-                  <Typography textAlign="center">{setting.name}</Typography>
-                </MenuItem>
-              </Link>
 
             ))}
           </Menu>

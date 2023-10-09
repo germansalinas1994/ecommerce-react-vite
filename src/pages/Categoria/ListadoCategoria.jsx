@@ -1,6 +1,6 @@
 import TableSearch from "../../components/Categoria/TableSearch";
 import {
-    Typography, Box
+    Typography, Box, Grid
 } from "@mui/material";
 // import { Link } from 'react-router-dom';
 import BotonAgregar from "../../components/Botones/Agregar";
@@ -266,11 +266,11 @@ const ListadoCategoria = () => {
 
     return (
         <>
-            <Box 
+            <Box
                 sx={{
-                    maxWidth:1,
-                    width:{xs:0.3,md:1},
-                    
+                    maxWidth: 1,
+                    width: { xs: 0.3, md: 1 },
+
                 }}
             >
                 <Typography
@@ -295,11 +295,13 @@ const ListadoCategoria = () => {
                     errorDescripcion={errorDescripcion}
                 />
 
+                <Grid container direction="row" justifyContent="center" alignItems="center" spacing={{ xs: 2, md: 2 }} columns={{ xs: 1, sm: 2, md: 2, lg: 4, xl: 6 }}>
 
-            <TableSearch categorias={categorias} onEdit={handleEditCategoria} onDelete={handleDeleteCategoria} />
+                    <TableSearch categorias={categorias} onEdit={handleEditCategoria} onDelete={handleDeleteCategoria} />
+                </Grid>
             </Box>
 
-            </>
+        </>
 
     );
 }

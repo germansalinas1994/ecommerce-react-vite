@@ -37,11 +37,13 @@ const ListadoPublicacion = () => {
 
 
     return (
-         <Box sx={{ flexGrow: 1}} mt={10} >
-         <Grid container direction="row" justifyContent="center" alignItems="center" spacing={{ xs: 4, md: 4 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-            <CardPublicacion publicaciones={publicaciones}  />
-         </Grid>
-       </Box>
+        //el flexgrow es para que se estire y ocupe todo el espacio disponible
+        <Box sx={{ flexGrow: 1 }} mt={10} >
+            {/* el xs es para que en pantallas pequeñas se muestre en una columna, en pantallas medianas en 2 columnas y en pantallas grandes en 4 columnas */}
+            <Grid container direction="row" justifyContent="center" alignItems="center" spacing={{ xs: 2, md: 2 }} columns={{ xs: 1, sm: 2, md: 2, lg: 4,xl:6 }}>
+                <CardPublicacion publicaciones={publicaciones} />
+            </Grid>
+        </Box>
     )
 }
 

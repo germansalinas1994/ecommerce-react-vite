@@ -116,7 +116,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 //componente que se encarga de mostrar el menu lateral
 
 
-const NavBar = ({ children, themeSwitch }) => {
+const NavBar = ({ children }) => {
 
 
   const navigate = useNavigate();

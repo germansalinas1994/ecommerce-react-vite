@@ -6,7 +6,8 @@ import theme from './theme';
 import darkTheme from './darkTheme';
 import NavBar from './NavBar';
 import ThemeContext from './ThemeContext';
-import ResponsiveAppBar from './ResponsiveAppBar';
+import Box from '@mui/material/Box';
+import Footer from './Footer';
 
 
 
@@ -21,11 +22,16 @@ const Layout = ({ children }) => {
     <ThemeContext.Provider value={{ isDarkTheme, toggleTheme }}>
       <ThemeProvider theme={isDarkTheme ? darkTheme : theme}>
         <CssBaseline />
-        <NavBar>
-          {children}
-        </NavBar>
+        <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+          <NavBar>
+            {children}
+          </NavBar>
+          <Box sx={{ flex: '1 0 auto' }} /> {/* Este Box empujará el footer hacia abajo */}
+          <Footer />
+        </Box>
       </ThemeProvider>
     </ThemeContext.Provider>
+
   );
 };
 
