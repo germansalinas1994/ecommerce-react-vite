@@ -15,7 +15,7 @@ const Footer = () => {
         <Box 
             sx={{ 
                 width: '100%', 
-                backgroundColor: isDarkTheme ? '#333131' : '#EEEEEE', 
+                backgroundColor: isDarkTheme ? '#121212' : '#E2E2E2', 
                 padding: '20px 0'
             }}
         >

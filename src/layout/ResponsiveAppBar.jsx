@@ -28,10 +28,11 @@ const pagesNav = [
 ]
 
 const settings = [
-  { id: 1, name: 'Perfil', route: '/perfil' },
-  { id: 2, name: 'Cuenta', route: '/cuenta' },
-  { id: 3, name: 'Dashboard', route: '/dashboard' },
-  { id: 4, name: 'Logout', route: '/logout' }
+  { id: 1, name: 'Pedidos', route: '/pedidos' },
+  { id: 2, name: 'Direcciones', route: '/direcciones' },
+  { id: 3, name: 'Favoritos', route: '/favoritos' },
+  { id: 4, name: 'Cuenta', route: '/cuenta' },
+  { id: 5, name: 'Salir', route: '/logout' }
 ]
 
 
@@ -177,7 +178,7 @@ function ResponsiveAppBar() {
 
         <Box sx={{ flexGrow: 0 }}>
         <IconButton sx={{ mr: 3}}>
-          <BotonCarrito />  
+          <BotonCarrito  />  
           </IconButton>
           <Tooltip title="Abrir opciones">
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>

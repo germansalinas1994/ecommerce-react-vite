@@ -21,6 +21,7 @@ const CardPublicacion = ({ publicaciones }) => {
                         sx={{
                             margin: '20px',
                             cursor: 'pointer',
+                            borderRadius:5,
                             '&:hover': { boxShadow: '0 0 15px rgba(0, 0, 0, 0.3)' }
                         }}
                     >
@@ -37,7 +38,7 @@ const CardPublicacion = ({ publicaciones }) => {
                                 <CardMedia
                                     component="img"
                                     image={p.idProductoNavigation.urlImagen}
-                                    sx={{ width: '100%', height: 'auto' }}
+                                    sx={{ width: '80%', height: 'auto' }}
                                 />
                     
 

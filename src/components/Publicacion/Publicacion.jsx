@@ -111,7 +111,7 @@ const Publicacion = () => {
                                         <Button variant="contained" color="primary" fullWidth sx={{ fontSize: '1.2rem', textTransform: 'none', height: '65px', marginBottom: 1 }}>
                                             Comprar ahora
                                         </Button>
-                                        <Button variant="outlined" color="primary" fullWidth sx={{ fontSize: '1.2rem', textTransform: 'none', height: '65px' }}>
+                                        <Button onClick={() => setCarrito()} variant="outlined" color="primary" fullWidth sx={{ fontSize: '1.2rem', textTransform: 'none', height: '65px' }}>
                                             Agregar al carrito
                                         </Button>
 
