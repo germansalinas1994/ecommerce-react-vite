@@ -112,7 +112,7 @@ const Publicacion = () => {
                                 </Box>
                             </Grid>
                         </Grid>
-                        <CardContent sx={{marginTop:15}}> 
+                        <CardContent sx={{marginTop:15, marginBottom:15}}> 
                             <Typography variant="h6">Especificaciones técnicas:</Typography>
                             <Typography variant="body1" color="textSecondary">
                                 {publicacion.idProductoNavigation.descripcion}
