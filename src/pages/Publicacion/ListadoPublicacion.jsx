@@ -38,12 +38,9 @@ const ListadoPublicacion = () => {
 
     return (
         //el flexgrow es para que se estire y ocupe todo el espacio disponible
-        <Box sx={{ flexGrow: 1 }} mt={10} >
-            {/* el xs es para que en pantallas pequeñas se muestre en una columna, en pantallas medianas en 2 columnas y en pantallas grandes en 4 columnas */}
-            <Grid container direction="row" justifyContent="center" alignItems="center" spacing={{ xs: 2, md: 2 }} columns={{ xs: 1, sm: 2, md: 2, lg: 4,xl:6 }}>
-                <CardPublicacion publicaciones={publicaciones} />
-            </Grid>
-        </Box>
+        <Grid container spacing={3} justifyContent="center">
+            <CardPublicacion publicaciones={publicaciones} />
+        </Grid>
     )
 }
 

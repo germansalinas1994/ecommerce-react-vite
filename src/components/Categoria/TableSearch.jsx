@@ -46,12 +46,13 @@ const TableSearch = ({ categorias,onEdit,onDelete}) => {
           sx={{
             maxWidth:1,
             maxHeight:1,
+            marginBottom: 20,
              width: {xs:0.3,md:1} 
             }}
           initialState={{
-            pagination: { paginationModel: { pageSize: 10 } },
+            pagination: { paginationModel: { pageSize: 15 } },
           }}
-          pageSizeOptions={[10, 20, 30]}
+          pageSizeOptions={[15, 20, 30]}
           rows={categorias}
           columns={myColumns}
           getRowId={(row) => row.idCategoria}

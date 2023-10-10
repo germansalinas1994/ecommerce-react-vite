@@ -9,7 +9,7 @@ const darkTheme = createTheme({
     },
     text: {
       primary: '#FFFFFF',
-      secondary: '#696969',
+      secondary: '#ECEAEA',
       disabled: '#C7D2D2',
       hint: '#22194D',
     },
