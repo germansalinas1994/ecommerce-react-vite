@@ -53,17 +53,23 @@ const Publicacion = () => {
         <Grid container spacing={3} justifyContent="center">
             {publicacion && (
                 <Grid item xs={12} sm={10} md={8} lg={8}>
-                    <Card elevation={10} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', marginBottom: 50, marginTop: 5, borderRadius:'15px'}}>
+                    <Card elevation={10} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', marginBottom: 50, marginTop: 5, borderRadius: '15px' }}>
+                        <Box>
+
+                        </Box>
                         <Grid container spacing={2}>
-                        <Grid item xs={12} sm={10} md={8} lg={6}>
+                            <Grid item xs={12} sm={10} md={8} lg={6}>
+                                <Card sx={{ margin: 3, mt: 12 }}>
                                     <CardMedia
                                         component="img"
                                         height="100%"  // Ajuste para que ocupe todo el espacio disponible en altura
                                         width="100%"
                                         image={publicacion.idProductoNavigation.urlImagen}
                                         alt={publicacion.idProductoNavigation.descripcion}
-                                        sx={{ marginRight: '20px', flex: 1 }} // flex: 1 hace que el componente ocupe todo el espacio disponible
+                                        sx={{ marginRight: '20px', maxWidth: '100%' }} // flex: 1 hace que el componente ocupe todo el espacio disponible
                                     />
+                                </Card>
+
                             </Grid>
                             <Grid item xs={12} sm={10} md={8} lg={6}>
                                 <Box padding={2} sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
@@ -102,17 +108,18 @@ const Publicacion = () => {
                                         </Typography>
                                     </FormControl>
                                     <Box mt={2} display="flex" flexDirection="column" gap={1} sx={{ maxWidth: '60%' }} mb={10}>
-                                        <Button variant="outlined" color="primary" fullWidth sx={{ height: '65px', marginBottom: 1 }}>
-                                            Ver medios de pago
-                                        </Button>
-                                        <Button variant="contained" color="primary" fullWidth sx={{ height: '65px' }}>
+                                        <Button variant="contained" color="primary" fullWidth sx={{ fontSize: '1.2rem', textTransform: 'none', height: '65px', marginBottom: 1 }}>
                                             Comprar ahora
                                         </Button>
+                                        <Button variant="outlined" color="primary" fullWidth sx={{ fontSize: '1.2rem', textTransform: 'none', height: '65px' }}>
+                                            Agregar al carrito
+                                        </Button>
+
                                     </Box>
                                 </Box>
                             </Grid>
                         </Grid>
-                        <CardContent sx={{marginTop:15, marginBottom:15}}> 
+                        <CardContent sx={{ marginTop: 15, marginBottom: 15 }}>
                             <Typography variant="h6">Especificaciones técnicas:</Typography>
                             <Typography variant="body1" color="textSecondary">
                                 {publicacion.idProductoNavigation.descripcion}

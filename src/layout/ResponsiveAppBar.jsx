@@ -14,7 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { Link } from 'react-router-dom';
 import PinterestIcon from '@mui/icons-material/Pinterest';
-
+import BotonCarrito from '../components/Botones/BotonCarrito';
 
 
 
@@ -176,12 +176,17 @@ function ResponsiveAppBar() {
 
 
         <Box sx={{ flexGrow: 0 }}>
-          <Tooltip title="Open settings">
+        <IconButton sx={{ mr: 3}}>
+          <BotonCarrito />  
+          </IconButton>
+          <Tooltip title="Abrir opciones">
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
               {/* en el src del avatar va la imagen del usuario, por ahora es una imagen de prueba, despues va a ser la imagen del usuario logueado */}
               <Avatar alt="Remy Sharp" src="https://mui.com/static/images/avatar/2.jpg" />
             </IconButton>
           </Tooltip>
+   
+
           <Menu
             sx={{ mt: '45px' }}
             id="menu-appbar"

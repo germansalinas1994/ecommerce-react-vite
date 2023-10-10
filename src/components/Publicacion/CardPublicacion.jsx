@@ -39,8 +39,7 @@ const CardPublicacion = ({ publicaciones }) => {
                                     image={p.idProductoNavigation.urlImagen}
                                     sx={{ width: '100%', height: 'auto' }}
                                 />
-                            </CardActionArea>
-                        </Link>
+                    
 
 
 
@@ -53,6 +52,8 @@ const CardPublicacion = ({ publicaciones }) => {
                                 Hasta 12 cuotas sin interés de <b>{calculateInstallment(p.precio)}</b>
                             </Typography>
                         </CardContent>
+                        </CardActionArea>
+                        </Link>
                     </Card>
                 </Grid >
             ))}
