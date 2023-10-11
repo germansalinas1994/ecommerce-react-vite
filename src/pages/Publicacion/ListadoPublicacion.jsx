@@ -8,11 +8,13 @@ import axios from 'axios';
 import CardPublicacion from '../../components/Publicacion/CardPublicacion';
 import { Card } from '@mui/material';
 import ThemeContext from '../../layout/ThemeContext';
+import LoadingModal from '../../components/LoadingModal';
 
 
 const ListadoPublicacion = () => {
     const apiLocalKey = import.meta.env.VITE_APP_API_KEY
     const { isDarkTheme } = useContext(ThemeContext);
+    const { showLoadingModal, hideLoadingModal } = LoadingModal();
 
 
 
@@ -20,19 +22,23 @@ const ListadoPublicacion = () => {
 
 
     useEffect(() => {
+        debugger;
         // Lógica para obtener las Publicaciones
         const fetchPublicaciones = async () => {
             // showLoadingModal();  // <-- Mostrar el modal antes de comenzar la operación asincrónica
+            showLoadingModal();
 
             try {
                 debugger;
                 const response = await axios.get(apiLocalKey + '/publicaciones');
                 debugger;
                 setPublicaciones(response.data.result.data)
+                hideLoadingModal();  // <-- Ocultar el modal cuando la operación ha concluido
                 // hideLoadingModal();  // <-- Ocultar el modal cuando la operación ha concluido
 
             } catch (error) {
-                // hideLoadingModal();  // <-- Ocultar el modal cuando la operación ha concluido
+
+                hideLoadingModal();  // <-- Ocultar el modal cuando la operación ha concluido
                 console.log(error);
             }
         };

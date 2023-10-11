@@ -52,10 +52,10 @@ const ModalFormCategoria = ({ open, handleClose, formData, handleChange, handleS
                         />
                     </Box>
                     <Box sx={{ textAlign: 'center' }}>
-                        <Button sx={{ mt: 1, mr: 2, width: '120px' }} size="large" variant="contained" color= "primary" onClick={handleClose}>
+                        <Button sx={{ mt: 1, mr: 2, width: '120px' }} size="large" variant="outlined" color= "primary" onClick={handleClose}>
                             Cancelar
                         </Button>
-                        <Button size="large" sx={{ mt: 1, width: '120px' }} variant="contained" color="success" onClick={handleSubmit}>
+                        <Button size="large" sx={{ mt: 1, width: '120px' }} variant="contained" color="primary" onClick={handleSubmit}>
                             {formData && formData.idCategoria ? 'Actualizar' : 'Cargar'}
                         </Button>
                     </Box>
