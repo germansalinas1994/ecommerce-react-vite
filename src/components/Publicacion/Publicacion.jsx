@@ -62,25 +62,26 @@ const Publicacion = () => {
             {publicacion && (
                 <Grid item xs={12} sm={10} md={8} lg={8}>
                     <Card elevation={10} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', marginBottom: 50, marginTop: 5, borderRadius: '15px' }}>
-                        <Box>
-
-                        </Box>
-                        <Grid container spacing={2}>
+                       
+                        <Grid container spacing={2} margin={1}>
                             <Grid item xs={12} sm={10} md={8} lg={6}>
-                                <Card sx={{ margin: 3, mt: 12 }}>
-                                    <CardMedia
-                                        component="img"
-                                        height="100%"  // Ajuste para que ocupe todo el espacio disponible en altura
-                                        width="100%"
-                                        image={publicacion.idProductoNavigation.urlImagen}
-                                        alt={publicacion.idProductoNavigation.descripcion}
-                                        sx={{ marginRight: '20px', maxWidth: '100%' }} // flex: 1 hace que el componente ocupe todo el espacio disponible
-                                    />
-                                </Card>
+                                <Box display='fixed' height={0.9} >
+                                    <Card sx={{ margin: 3 }}>
+                                        <CardMedia
+                                            component="img"
+                                            height="100%"  // Ajuste para que ocupe todo el espacio disponible en altura
+                                            width="100%"
+                                            image={publicacion.idProductoNavigation.urlImagen}
+                                            alt={publicacion.idProductoNavigation.descripcion}
+                                            sx={{ marginRight: '20px', maxWidth: '100%' }} // flex: 1 hace que el componente ocupe todo el espacio disponible
+                                        />
+                                    </Card>
+                                </Box>
+
 
                             </Grid>
                             <Grid item xs={12} sm={10} md={8} lg={6}>
-                                <Box padding={2} sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                                <Box padding={2} sx={{ display: 'flex', flexDirection: 'column', gap: 2, mt: 1 }}>
                                     <Typography variant="h4" fontWeight="bold">{publicacion.idProductoNavigation.nombre}</Typography>
                                     <Typography variant="body1" color="textSecondary">
                                         Categoria: {publicacion.idProductoNavigation.idCategoriaNavigation.nombre}
@@ -127,7 +128,7 @@ const Publicacion = () => {
                                 </Box>
                             </Grid>
                         </Grid>
-                        <CardContent sx={{ marginTop: 15, marginBottom: 15 }}>
+                        <CardContent sx={{ marginTop: 1, marginBottom: 15 }}>
                             <Typography variant="h6">Especificaciones técnicas:</Typography>
                             <Typography variant="body1" color="textSecondary">
                                 {publicacion.idProductoNavigation.descripcion}
