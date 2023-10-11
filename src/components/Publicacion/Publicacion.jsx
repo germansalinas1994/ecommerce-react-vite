@@ -63,7 +63,7 @@ const Publicacion = () => {
                 <Grid item xs={12} sm={10} md={8} lg={8}>
                     <Card elevation={10} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', marginBottom: 50, marginTop: 5, borderRadius: '15px' }}>
 
-                        <Grid container spacing={2} margin={1}>
+                        <Grid container spacing={2} >
                             <Grid item xs={12} sm={10} md={8} lg={6}>
                                 <Box display='fixed' height={0.9} width={1} sx={{backgroundColor:'primary'}}>
                                     <Box sx={{ margin: 3, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>

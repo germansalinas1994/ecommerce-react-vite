@@ -1,4 +1,4 @@
-import { Card, CardActionArea, CardContent, CardMedia, Typography, Grid } from "@mui/material";
+import { Card, CardActionArea, CardContent, CardMedia, Typography, Grid, Box } from "@mui/material";
 import { Link } from "react-router-dom";
 
 const CardPublicacion = ({ publicaciones }) => {
@@ -14,48 +14,52 @@ const CardPublicacion = ({ publicaciones }) => {
 
     return (
         <>
-        
             {publicaciones.map((p) => (
-                <Grid item xs={12} sm={6} md={4} lg={3} key={p.idPublicacion}>
+                <Grid item xs={12} sm={6} md={4} lg={3} key={p.idPublicacion} mb={5}>
                     <Card
                         sx={{
+                            height: '100%', // <-- Asegura que la tarjeta ocupe todo el espacio disponible en el Grid.
                             margin: '20px',
                             cursor: 'pointer',
-                            borderRadius:5,
+                            borderRadius: 5,
+                            display: 'flex',
+                            flexDirection: 'column',
                             '&:hover': { boxShadow: '0 0 15px rgba(0, 0, 0, 0.3)' }
                         }}
                     >
-                        <Link to={`/publicacion/${p.idPublicacion}`} style={{ color: 'inherit', textDecoration: 'none' }}>
 
-                            <CardActionArea
-                                sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
-                            >
+                        <CardActionArea
+                            sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexGrow: 1 }}
+                        >
+                            <Link to={`/publicacion/${p.idPublicacion}`} style={{ color: 'inherit', textDecoration: 'none' }}>
 
-                                <Typography variant="h5" align="center" sx={{ fontWeight: 'bold', mt:3, mb:2}}>
+
+                                <Typography variant="h5" align="center" sx={{ fontWeight: 'bold', mt: 3, mb: 2 }}>
                                     {p.idProductoNavigation.nombre}
                                 </Typography>
 
-                                <CardMedia
-                                    component="img"
-                                    image={p.idProductoNavigation.urlImagen}
-                                    sx={{ width: '80%', height: 'auto' }}
-                                />
-                    
+                                <Box sx={{ display: 'flex', flexGrow: 1, alignItems: 'center', justifyContent: 'center', width: '100%', minHeight: '200px' }}>
+                                    <CardMedia
+                                        component="img"
+                                        image={p.idProductoNavigation.urlImagen}
+                                        sx={{ maxWidth: '80%', maxHeight: '80%' }} // <-- Establece tamaños máximos para garantizar uniformidad
+                                    />
+                                </Box>
 
+                                <CardContent>
 
-
-                        <CardContent>
-
-                            <Typography align="center" color="primary" sx={{ fontWeight: 'bold', fontSize: '1.4rem' }}>
-                                {formatPrice(p.precio)}
-                            </Typography>
-                            <Typography align="center" color="textSecondary" sx={{ fontSize: '1.0rem' }}>
-                                Hasta 12 cuotas sin interés de <b>{calculateInstallment(p.precio)}</b>
-                            </Typography>
-                        </CardContent>
+                                    <Typography align="center" color="primary" sx={{ fontWeight: 'bold', fontSize: '1.4rem' }}>
+                                        {formatPrice(p.precio)}
+                                    </Typography>
+                                    <Typography align="center" color="textSecondary" sx={{ fontSize: '1.0rem' }}>
+                                        Hasta 12 cuotas sin interés de <b>{calculateInstallment(p.precio)}</b>
+                                    </Typography>
+                                </CardContent>
+                            </Link>
                         </CardActionArea>
-                        </Link>
+
                     </Card>
+
                 </Grid >
             ))}
         </>
