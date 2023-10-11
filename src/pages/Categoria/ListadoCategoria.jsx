@@ -10,6 +10,7 @@ import LoadingModal from "../../components/LoadingModal";
 import ModalFormCategoria from "../../components/Categoria/ModalFormCategoria";
 
 
+
 import { useState, useEffect } from "react";
 
 
@@ -266,21 +267,10 @@ const ListadoCategoria = () => {
 
     return (
         <>
-            <Box
-                sx={{
-                    maxWidth: 1,
-                    width: { xs: 0.3, md: 1 },
 
-                }}
-            >
-                <Typography
-                    variant="h4"
-                    sx={{
-                        fontWeight: 500,
-                        marginBottom: { xs: '10px', md: '0' },
-                    }}
-                >
-                    Categorias
+            <Box margin={5}>
+                <Typography variant="h4" component="h2" gutterBottom>
+                    Listado de Categorías
                 </Typography>
                 <BotonAgregar onClick={handleOpenModal}></BotonAgregar>
 
@@ -300,6 +290,7 @@ const ListadoCategoria = () => {
                     <TableSearch categorias={categorias} onEdit={handleEditCategoria} onDelete={handleDeleteCategoria} />
                 </Grid>
             </Box>
+
 
         </>
 

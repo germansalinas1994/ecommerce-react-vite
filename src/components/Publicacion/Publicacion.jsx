@@ -12,11 +12,14 @@ import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
+import { useCarrito } from "../Cart/CarritoProvider";
 
 
 const apiLocalKey = import.meta.env.VITE_APP_API_KEY;
 
 const Publicacion = () => {
+    const { agregarAlCarrito } = useCarrito();
+
     const { id } = useParams();
     const [publicacion, setPublicacion] = useState(null);
     const [selectedQuantity, setSelectedQuantity] = useState(1);
@@ -37,6 +40,11 @@ const Publicacion = () => {
             console.log(error);
         }
     }
+
+    const handleAgregarAlCarrito = () => {
+        agregarAlCarrito({ id: publicacion.id, cantidad: selectedQuantity });
+    }
+
 
 
 
@@ -111,7 +119,7 @@ const Publicacion = () => {
                                         <Button variant="contained" color="primary" fullWidth sx={{ fontSize: '1.2rem', textTransform: 'none', height: '65px', marginBottom: 1 }}>
                                             Comprar ahora
                                         </Button>
-                                        <Button onClick={() => setCarrito()} variant="outlined" color="primary" fullWidth sx={{ fontSize: '1.2rem', textTransform: 'none', height: '65px' }}>
+                                        <Button onClick={handleAgregarAlCarrito} variant="outlined" color="primary" fullWidth sx={{ fontSize: '1.2rem', textTransform: 'none', height: '65px' }}>
                                             Agregar al carrito
                                         </Button>
 
@@ -133,3 +141,21 @@ const Publicacion = () => {
 }
 
 export default Publicacion;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
