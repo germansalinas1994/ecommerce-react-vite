@@ -62,20 +62,18 @@ const Publicacion = () => {
             {publicacion && (
                 <Grid item xs={12} sm={10} md={8} lg={8}>
                     <Card elevation={10} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', marginBottom: 50, marginTop: 5, borderRadius: '15px' }}>
-                       
+
                         <Grid container spacing={2} margin={1}>
                             <Grid item xs={12} sm={10} md={8} lg={6}>
-                                <Box display='fixed' height={0.9} >
-                                    <Card sx={{ margin: 3 }}>
+                                <Box display='fixed' height={0.9} width={1} sx={{backgroundColor:'primary'}}>
+                                    <Box sx={{ margin: 3, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                                         <CardMedia
                                             component="img"
-                                            height="100%"  // Ajuste para que ocupe todo el espacio disponible en altura
-                                            width="100%"
                                             image={publicacion.idProductoNavigation.urlImagen}
                                             alt={publicacion.idProductoNavigation.descripcion}
-                                            sx={{ marginRight: '20px', maxWidth: '100%' }} // flex: 1 hace que el componente ocupe todo el espacio disponible
+                                            sx={{ maxWidth: '100%',margin: 3, display: 'flex', alignItems: 'center', justifyContent: 'center'  }}
                                         />
-                                    </Card>
+                                    </Box>
                                 </Box>
 
 
