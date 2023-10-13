@@ -6,7 +6,7 @@ import ListadoCategoria from '../pages/Categoria/ListadoCategoria';
 import ListadoPublicacion from '../pages/Publicacion/ListadoPublicacion';
 import NuevaCategoria from '../pages/Categoria/NuevaCategoria';
 import Publicacion from '../components/Publicacion/Publicacion';
-import Carrito from '../components/Cart/Carrito';
+import Carrito from '../pages/Carrito/ListadoCarrito';
 
 
 const AppRouter = () => {
