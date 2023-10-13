@@ -177,16 +177,19 @@ function ResponsiveAppBar() {
 
 
         <Box sx={{ flexGrow: 0 }}>
-        <IconButton sx={{ mr: 3}}>
-          <BotonCarrito  />  
-          </IconButton>
+          <Link to={'/cart'} style={{ color: 'inherit', textDecoration: 'none' }}>
+            <IconButton sx={{ mr: 3 }}>
+              <BotonCarrito />
+            </IconButton>
+          </Link>
+
           <Tooltip title="Abrir opciones">
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
               {/* en el src del avatar va la imagen del usuario, por ahora es una imagen de prueba, despues va a ser la imagen del usuario logueado */}
               <Avatar alt="Remy Sharp" src="https://mui.com/static/images/avatar/2.jpg" />
             </IconButton>
           </Tooltip>
-   
+
 
           <Menu
             sx={{ mt: '45px' }}

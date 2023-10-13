@@ -190,12 +190,13 @@ const ListadoCategoria = () => {
             try {
                 debugger;
                 handleCloseModal();
+                showLoadingModal();
+
                 // showLoadingModal();  // <-- Mostrar el modal antes de comenzar la operación asincrónica
 
                 let resp = '';
                 if (isEditing) {
                     // Si está editando, entonces envía un PUT
-                    showLoadingModal();
                     resp = await axios.put(apiLocalKey + '/categoria/' + formData.idCategoria, formData);
                     //muestro el msj de exito
 
@@ -218,7 +219,7 @@ const ListadoCategoria = () => {
                     })
                 }
                 else {
-                    showLoadingModal();
+        
                     resp = await axios.post(apiLocalKey + '/categorias', formData);
                     Swal.fire({
                         position: 'center',

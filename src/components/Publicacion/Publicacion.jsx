@@ -18,6 +18,7 @@ import { useCarrito } from "../Cart/CarritoProvider";
 const apiLocalKey = import.meta.env.VITE_APP_API_KEY;
 
 const Publicacion = () => {
+    //import la funcion agregal al carrito del carrito provider
     const { agregarAlCarrito } = useCarrito();
 
     const { id } = useParams();
@@ -42,7 +43,8 @@ const Publicacion = () => {
     }
 
     const handleAgregarAlCarrito = () => {
-        agregarAlCarrito({ id: publicacion.id, cantidad: selectedQuantity });
+        debugger;
+        agregarAlCarrito({ id: publicacion.idPublicacion, cantidad: selectedQuantity });
     }
 
 
@@ -66,7 +68,7 @@ const Publicacion = () => {
                         <Grid container spacing={2} >
                             <Grid item xs={12} sm={10} md={8} lg={6}>
                                 <Box display='fixed' height={0.9} width={1} sx={{backgroundColor:'primary'}}>
-                                    <Box sx={{ margin: 3, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center',maxWidth:0.8,margin:5 }}>
                                         <CardMedia
                                             component="img"
                                             image={publicacion.idProductoNavigation.urlImagen}
