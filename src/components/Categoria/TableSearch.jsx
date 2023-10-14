@@ -5,6 +5,7 @@ import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/DeleteOutlined';
 import { GridActionsCellItem } from '@mui/x-data-grid';
+import Typography from '@mui/material/Typography';
 
 const TableSearch = ({ categorias,onEdit,onDelete}) => {
   const myColumns = [
@@ -39,7 +40,13 @@ const TableSearch = ({ categorias,onEdit,onDelete}) => {
     },
   ];
 
-  if (categorias.length > 0) {
+  if (categorias.length === 0) {
+    return (
+      <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
+        <Typography variant="h5" sx={{ marginBottom: '20px' }}>No se han agregado categorías</Typography>
+      </Box>
+    );
+  }
     return (
 
         <DataGrid
@@ -75,6 +82,6 @@ const TableSearch = ({ categorias,onEdit,onDelete}) => {
         />
     );
   }
-}
+
 
 export default TableSearch;

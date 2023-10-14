@@ -12,7 +12,7 @@ import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
-import { useCarrito } from "../Cart/CarritoProvider";
+import { useCarrito } from "../../components/Cart/CarritoProvider";
 
 
 const apiLocalKey = import.meta.env.VITE_APP_API_KEY;
@@ -63,7 +63,7 @@ const Publicacion = () => {
         <Grid container spacing={3} justifyContent="center">
             {publicacion && (
                 <Grid item xs={12} sm={10} md={8} lg={8}>
-                    <Card elevation={10} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', marginBottom: 50, marginTop: 5, borderRadius: '15px' }}>
+                    <Card elevation={10} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', marginBottom: 50, borderRadius: '15px' }}>
 
                         <Grid container spacing={2} >
                             <Grid item xs={12} sm={10} md={8} lg={6}>

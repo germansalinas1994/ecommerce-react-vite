@@ -52,9 +52,9 @@ const ListadoPublicacion = () => {
         <Card container sx={{      
         backgroundColor: isDarkTheme ? '#000000' : '#F5F5F5', 
         borderRadius:2,
-        padding: '20px 0', margin:10, display:'flex'}}>
+        padding: '20px 0', display:'flex'}}>
     {/* //el flexgrow es para que se estire y ocupe todo el espacio disponible */}
-            <Grid container spacing={2} justifyContent="center" sx={{display:'flex', maxWidth:1, backgroundColor:'primary', mt:5, mb:15}}>
+            <Grid container spacing={2} justifyContent="center" sx={{display:'flex', maxWidth:1, backgroundColor:'primary', mb:15}}>
                 <CardPublicacion publicaciones={publicaciones} />
             </Grid>
         </Card>

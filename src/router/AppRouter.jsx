@@ -5,7 +5,7 @@ import ListadoCategoria from '../pages/Categoria/ListadoCategoria';
 // import ListadoProducto from '../pages/Producto/ListadoProducto';
 import ListadoPublicacion from '../pages/Publicacion/ListadoPublicacion';
 import NuevaCategoria from '../pages/Categoria/NuevaCategoria';
-import Publicacion from '../components/Publicacion/Publicacion';
+import Publicacion from '../pages/Publicacion/Publicacion';
 import Carrito from '../pages/Carrito/ListadoCarrito';
 
 

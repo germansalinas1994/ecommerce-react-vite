@@ -1,6 +1,13 @@
 import { Card, CardActionArea, CardContent, CardMedia, Typography, Grid, Box } from "@mui/material";
 import { Link } from "react-router-dom";
 
+
+
+
+//ESTAS SON LAS TARJETAS DE LAS PUBLICACIONES DE LOS PRODUCTOS QUE SE RECORRE EN EL LISTADO
+
+
+
 const CardPublicacion = ({ publicaciones }) => {
     // Helper function to format price with commas and decimals
     const formatPrice = (price) => {
@@ -10,6 +17,15 @@ const CardPublicacion = ({ publicaciones }) => {
     // Helper function to calculate price per installment
     const calculateInstallment = (price) => {
         return formatPrice(price / 12);
+    }
+
+
+    if (publicaciones.length === 0) {
+        return (
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
+                <Typography variant="h5" sx={{ marginBottom: '20px' }}>No se han agregado publicaciones</Typography>
+            </Box>
+        );
     }
 
     return (

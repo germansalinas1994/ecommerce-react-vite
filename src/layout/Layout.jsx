@@ -22,8 +22,7 @@ const Layout = ({ children }) => {
     <ThemeContext.Provider value={{ isDarkTheme, toggleTheme }}>
       <ThemeProvider theme={isDarkTheme ? darkTheme : theme}>
         <CssBaseline />
-        <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-          <Box sx={{marginTop:6}}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', justifyContent: 'space-between', padding: '2em', marginTop: '4em' }}>
             <NavBar>
               {children}
             </NavBar>
@@ -31,7 +30,6 @@ const Layout = ({ children }) => {
 
           <Box sx={{ flex: '1 0 auto' }} /> {/* Este Box empujará el footer hacia abajo */}
           <Footer />
-        </Box>
       </ThemeProvider>
     </ThemeContext.Provider>
 

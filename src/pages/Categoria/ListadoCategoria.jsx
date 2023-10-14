@@ -269,7 +269,7 @@ const ListadoCategoria = () => {
     return (
         <>
 
-            <Box margin={5}>
+            <Box >
                 <Typography variant="h4" component="h2" gutterBottom>
                     Listado de Categorías
                 </Typography>
