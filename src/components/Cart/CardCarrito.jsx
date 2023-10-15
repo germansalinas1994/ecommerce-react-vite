@@ -95,6 +95,7 @@ const CardCarrito = ({ publicacionesCarrito, disminuir, aumentar, eliminar }) =>
                         color="primary"
                         sx={{
                             marginTop: '20px',
+                            textTransform: 'none', // Elimina las mayúsculas
                             alignSelf: 'center',
                             padding: '12px 50px', // Agrega más padding
                             fontSize: '1.2em'     // Aumenta el tamaño de la fuente
