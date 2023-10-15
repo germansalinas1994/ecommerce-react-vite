@@ -26,7 +26,7 @@ dist/
 # Dependencias generadas por eslint
 /.eslintrc
 /.eslintrc.js
-/.eslintrc.json
+.eslintrc.json
 
 # Dependencias generadas por Jest
 /jest.config.js
