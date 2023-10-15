@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState,useEffect } from 'react';
 
 // 1. Creamos el contexto, que es donde vamos a almacenar el estado global en la aplicación
 const CarritoContext = createContext({
@@ -16,8 +16,19 @@ export const useCarrito = () => {
 
 // 2. Creamos el Provider que va a envolver a toda la aplicación, el carrito va a estar disponible en todos los componentes
 export const CarritoProvider = ({ children }) => {
-    const [carrito, setCarrito] = useState([]);
+    const [carrito, setCarrito] = useState(() => {
+        const carritoGuardado = localStorage.getItem('carrito');
+        if (carritoGuardado) {
+            return JSON.parse(carritoGuardado);
+        }
+        return [];
+    });
 
+    useEffect(() => {
+        localStorage.setItem('carrito', JSON.stringify(carrito));
+        // Si manejas el tema en el estado, también lo guardas aquí:
+        // localStorage.setItem('tema', tema);
+    }, [carrito]); // Observamos cambios en el estado carrito
 
 
     // 4. Creamos la función que va a modificar el estado global, recibe un objeto producto con una cantidad
@@ -41,6 +52,8 @@ export const CarritoProvider = ({ children }) => {
                 return [...prevCarrito, producto];
             }
         });
+        localStorage.setItem('carrito', JSON.stringify(carrito));
+
     };
     
     const aumentarCantidad = (idPublicacion) => {
@@ -51,6 +64,8 @@ export const CarritoProvider = ({ children }) => {
                     : p
             );
         });
+        localStorage.setItem('carrito', JSON.stringify(carrito));
+
     };
     
     const disminuirCantidad = (idPublicacion) => {
@@ -73,12 +88,16 @@ export const CarritoProvider = ({ children }) => {
             }
             return prevCarrito; // Si no se encuentra el producto, devuelve el carrito tal como está
         });
+        localStorage.setItem('carrito', JSON.stringify(carrito));
+
     };
     
     const eliminarDelCarrito = (idPublicacion) => {
         setCarrito(prevCarrito => {
             return prevCarrito.filter(p => p.id !== idPublicacion);
         });
+        localStorage.setItem('carrito', JSON.stringify(carrito));
+
     };
     
     return (
