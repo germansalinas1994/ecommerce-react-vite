@@ -148,7 +148,7 @@ function ResponsiveAppBar() {
                 onClick={handleCloseNavMenu}
                 component={Link}
                 to={page.route.toLowerCase()}
-                style={{ color: 'inherit', textDecoration: 'none' }}
+                style={{ color: '#FFFFFF', textDecoration: 'none' }}
               >
                 <Typography textAlign="center">{page.name}</Typography>
               </MenuItem>
